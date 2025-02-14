@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
+import { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const config: NextConfig = {
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "placehold.co",
+			},
+		],
+		dangerouslyAllowSVG: true,
+		contentDispositionType: "attachment",
+	},
 };
 
-export default nextConfig;
+export default config;
