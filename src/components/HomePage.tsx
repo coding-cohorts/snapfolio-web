@@ -40,7 +40,10 @@ const HomePage = () => {
 							<button className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
 								Create Resume <ArrowRight className="w-4 h-4" />
 							</button>
-							<Link href="/templates" className="px-8 py-3 border border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 transition-colors">
+							<Link
+								href="/templates"
+								className="px-8 py-3 border border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 transition-colors"
+							>
 								View Templates
 							</Link>
 						</div>
@@ -106,7 +109,7 @@ const HomePage = () => {
 	);
 };
 
-const FeatureCard = ({ icon, title, description }) => {
+const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => {
 	return (
 		<div className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
 			<div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">{icon}</div>
