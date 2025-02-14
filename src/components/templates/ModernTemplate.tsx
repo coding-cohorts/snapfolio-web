@@ -1,5 +1,7 @@
 // Modern Template - Clean, with a sidebar
+import { ResumeData } from "@/types/resume-data";
 import { Mail, Phone, MapPin, Github } from "lucide-react";
+
 export const ModernTemplate: React.FC<{ data: ResumeData }> = ({ data }) => {
 	return (
 		<div className="flex bg-white min-h-[1056px] w-[816px]">

@@ -1,3 +1,4 @@
+import { ResumeData } from '@/types/resume-data';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 // Classic Template - Traditional, header-based layout

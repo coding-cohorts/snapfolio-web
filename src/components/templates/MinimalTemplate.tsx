@@ -1,3 +1,4 @@
+import { ResumeData } from "@/types/resume-data";
 
 // Minimal Template - Clean, minimalist design
 export const MinimalTemplate: React.FC<{ data: ResumeData }> = ({ data }) => {
