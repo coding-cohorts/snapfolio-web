@@ -1,4 +1,4 @@
-import Navbar from "./Navbar"; // Import the new Navbar component
+
 import { ArrowRight, Clock, Palette, Download, Sparkles, FileText } from "lucide-react";
 import Link from "next/link";
 
@@ -6,7 +6,7 @@ const HomePage = () => {
 	return (
 		<div className="min-h-screen bg-white">
 			{/* Use the Navbar here */}
-			<Navbar />
+			
 
 			{/* Hero Section */}
 			<div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
