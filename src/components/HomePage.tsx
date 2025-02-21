@@ -1,37 +1,12 @@
-import { ArrowRight, FileText, Palette, Download, Clock, Sparkles } from "lucide-react";
+
+import { ArrowRight, Clock, Palette, Download, Sparkles, FileText } from "lucide-react";
 import Link from "next/link";
 
 const HomePage = () => {
 	return (
 		<div className="min-h-screen bg-white">
-			{/* Navigation */}
-			<nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="flex justify-between items-center h-16">
-						<div className="flex items-center">
-							<FileText className="h-8 w-8 text-blue-600" />
-							<span className="ml-2 text-xl font-bold">SnapFolio</span>
-						</div>
-						<div className="hidden sm:flex items-center gap-6">
-							<a href="#features" className="text-gray-600 hover:text-gray-900">
-								Features
-							</a>
-							<a href="#templates" className="text-gray-600 hover:text-gray-900">
-								Templates
-							</a>
-							<button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap">
-								Get Started
-							</button>
-						</div>
-						{/* Mobile menu button */}
-						<button className="sm:hidden p-2 rounded-lg hover:bg-gray-100">
-							<svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-							</svg>
-						</button>
-					</div>
-				</div>
-			</nav>
+			{/* Use the Navbar here */}
+			
 
 			{/* Hero Section */}
 			<div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -55,11 +30,6 @@ const HomePage = () => {
 								View Templates
 							</Link>
 						</div>
-					</div>
-
-					{/* Preview Image */}
-					<div className="mt-16 rounded-xl overflow-hidden shadow-2xl">
-						{/* <img src="/api/placeholder/1200/600" alt="Resume Builder Interface" className="w-full object-cover" /> */}
 					</div>
 				</div>
 			</div>
