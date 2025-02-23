@@ -1,31 +1,50 @@
+"use client";
+import { useState } from 'react';
 import { FileText } from "lucide-react";
+import Link from "next/link";
 
 const Navbar = () => {
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	return (
-		<nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b">
+		<nav 
+  className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b"
+  role="navigation"
+  aria-label="Main navigation"
+>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between items-center h-16">
 					{/* Logo Section */}
-					<div className="flex items-center">
+					<div className="flex items-center" role="banner">
 						<FileText className="h-8 w-8 text-blue-600" />
 						<span className="ml-2 text-xl font-bold">SnapFolio</span>
 					</div>
 
 					{/* Desktop Navigation Links */}
 					<div className="hidden sm:flex items-center gap-6">
-						<a href="#features" className="text-gray-600 hover:text-gray-900">
+						<a href="#features" className="text-gray-600 hover:text-gray-900"  role="menuitem"
+                           tabIndex={0}>
 							Features
 						</a>
-						<a href="#templates" className="text-gray-600 hover:text-gray-900">
+						<Link
+						 href="/templates"
+						  className="text-gray-600 hover:text-gray-900"  role="menuitem"
+                          tabIndex={0}
+						  >
 							Templates
-						</a>
-						<button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap">
+						</Link>
+						
+						<button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"  role="menuitem"
+                            tabIndex={0}>
 							Get Started
 						</button>
 					</div>
-
-					{/* Mobile Menu Button */}
-					<button className="sm:hidden p-2 rounded-lg hover:bg-gray-100">
+                    {/*Mobile menu button*/}
+			 <button 
+       className="sm:hidden p-2 rounded-lg hover:bg-gray-100"
+       onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+       aria-label="Toggle mobile menu"
+      >
+					
 						<svg
 							className="h-6 w-6"
 							fill="none"
@@ -40,6 +59,21 @@ const Navbar = () => {
 							/>
 						</svg>
 					</button>
+					{isMobileMenuOpen && (
+        <div className="sm:hidden absolute top-16 left-0 right-0 bg-white border-b">
+          <div className="px-4 py-2">
+            <a href="#features" className="block py-2 text-gray-600 hover:text-gray-900">
+              Features
+            </a>
+            <a href="#templates" className="block py-2 text-gray-600 hover:text-gray-900">
+              Templates
+            </a>
+            <button className="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+							Get Started
+						</button>
+          </div>
+        </div>
+      )}
 				</div>
 			</div>
 		</nav>
