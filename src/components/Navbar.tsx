@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FileText } from "lucide-react";
 import Link from "next/link";
 
+
 const Navbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	return (
@@ -21,13 +22,13 @@ const Navbar = () => {
 
 					{/* Desktop Navigation Links */}
 					<div className="hidden sm:flex items-center gap-6">
-						<a href="#features" className="text-gray-600 hover:text-gray-900"  role="menuitem"
+						<a href="#features" className="text-gray-600 hover:text-gray-900"  role="menubar"
                            tabIndex={0}>
 							Features
 						</a>
 						<Link
 						 href="/templates"
-						  className="text-gray-600 hover:text-gray-900"  role="menuitem"
+						  className="block py-2 text-gray-600 hover:text-gray-900"  role="menuitem"
                           tabIndex={0}
 						  >
 							Templates
@@ -60,14 +61,22 @@ const Navbar = () => {
 						</svg>
 					</button>
 					{isMobileMenuOpen && (
-        <div className="sm:hidden absolute top-16 left-0 right-0 bg-white border-b">
+         <div 
+		           className="sm:hidden absolute top-16 left-0 right-0 bg-white border-b"
+		           role="menu"
+		           onKeyDown={(e) => {
+		             if (e.key === 'Escape') {
+		               setIsMobileMenuOpen(false);
+		            }
+		          }}
+		         >
           <div className="px-4 py-2">
-            <a href="#features" className="block py-2 text-gray-600 hover:text-gray-900">
+            <a href="#features" className="block py-2 text-gray-600 hover:text-gray-900" role="menubar">
               Features
             </a>
-            <a href="#templates" className="block py-2 text-gray-600 hover:text-gray-900">
+            <Link href="/templates" className="block py-2 text-gray-600 hover:text-gray-900">
               Templates
-            </a>
+            </Link>
             <button className="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
 							Get Started
 						</button>
