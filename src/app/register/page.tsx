@@ -3,13 +3,16 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { FileText, ArrowRight, ArrowLeft, Check } from "lucide-react";
 import Image from "next/image";
+import axios from 'axios';
 
 type Step = 1 | 2 | 3;
 
 export default function RegisterPage() {
+	const BASE_URL = "http://localhost:8080"
 	const [currentStep, setCurrentStep] = useState<Step>(1);
 	const [formData, setFormData] = useState({
 		fullName: "",
+		userName: "",
 		email: "",
 		profession: "",
 		experience: "",
@@ -21,14 +24,37 @@ export default function RegisterPage() {
 		setFormData((prev) => ({ ...prev, [field]: value }));
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const [error, setError] = useState("");
+    const [success, setSuccess] = useState(false);
+	const handleSubmit = async(e: React.FormEvent) => {
 		e.preventDefault();
+		setError("");
 		if (currentStep < 3) {
 			setCurrentStep((prev) => (prev + 1) as Step);
-		} else {
-			console.log("Registration complete:", formData);
+			return;
 		}
-	};
+		// Validate password match
+	    if (formData.password !== formData.confirmPassword) {
+	        setError("Passwords don't match");
+			return;
+		}
+		try{
+			console.log("Registration data:", formData);
+			const sendingData = {
+				password: formData.password,
+				username: formData.userName,
+				email: formData.email,
+			};
+			console.log("Sending data ",sendingData)
+			const response = await axios.post(`${BASE_URL}/auth/signup`,sendingData)
+			setSuccess(true);
+			console.log("Response ",response.data)
+		}
+		catch(err){
+			console.log("Error in user registration ",err)
+			setError("Registration failed. Please try again.")
+		}
+	}
 
 	const handleGoogleSignIn = () => {
 		// Implement Google Sign In
@@ -146,7 +172,7 @@ export default function RegisterPage() {
 					)}
 
 					{/* Form Steps */}
-					<form onSubmit={handleSubmit} className="space-y-6">
+					{!success && <form onSubmit={handleSubmit} className="space-y-6">
 						{currentStep === 1 && (
 							<div className="space-y-6">
 								<h2 className="text-2xl font-bold text-gray-900">Personal Information</h2>
@@ -161,6 +187,19 @@ export default function RegisterPage() {
 										className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
 										value={formData.fullName}
 										onChange={(e) => updateFormData("fullName", e.target.value)}
+									/>
+								</div>
+								<div>
+									<label htmlFor="userName" className="block text-sm font-medium text-gray-700">
+										User Name
+									</label>
+									<input
+										type="text"
+										id="userName"
+										required
+										className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+										value={formData.userName}
+										onChange={(e) => updateFormData("userName", e.target.value)}
 									/>
 								</div>
 								<div>
@@ -261,7 +300,10 @@ export default function RegisterPage() {
 								{currentStep === 3 ? "Complete" : "Continue"} {currentStep < 3 && <ArrowRight className="w-4 h-4" />}
 							</button>
 						</div>
-					</form>
+					</form>}
+
+					{error && <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">{error}</div>}
+                    {success && <div className="p-3 text-sm text-green-500 bg-green-50 rounded-md">Registration successful! You can now login.</div>}
 
 					{/* Sign In Link */}
 					<p className="mt-8 text-center text-sm text-gray-600">
