@@ -40,6 +40,12 @@ const Navbar = () => {
 							tabIndex={0}>
 							Get Started
 						</button>
+						<Link href="/login">
+  						<button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"role="menuitem"
+						tabIndex={0}>
+    						Login
+  						</button>
+						</Link>
 					</div>
 					{/*Mobile menu button*/}
 					<button
@@ -82,6 +88,7 @@ const Navbar = () => {
 								<button className="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
 									Get Started
 								</button>
+								
 							</div>
 						</div>
 					)}
