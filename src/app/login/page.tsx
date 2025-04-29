@@ -12,7 +12,8 @@ export default function LoginPage() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			const res = await fetch("/api/auth/login", { 
+			const res = await fetch("http://localhost:8080/auth/login", {
+ 
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(formData),
@@ -23,7 +24,7 @@ export default function LoginPage() {
 	
 			if (res.ok) {
 				console.log("Login successful!", data);
-				window.location.href = "/home"; // Redirect after login
+				window.location.href = "/home"; 
 			} else {
 				alert(data.message || "Invalid username or password");
 			}
