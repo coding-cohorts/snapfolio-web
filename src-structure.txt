@@ -1,0 +1,21 @@
+
+C:\Users\91953\OneDrive\Desktop\CodingCohorts\SnapFolio\snapfolio-web
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── node_modules
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+├── README.md
+├── src
+├── src-structure.txt
+├── tailwind.config.ts
+└── tsconfig.json
+
+directory: 3 file: 10
+
+
+
+[2K[1G

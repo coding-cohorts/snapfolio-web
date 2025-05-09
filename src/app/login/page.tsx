@@ -9,11 +9,32 @@ export default function LoginPage() {
 		password: "",
 	});
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		// Handle login logic here
-		console.log("Login attempt with:", formData);
+		try {
+			const res = await fetch("http://localhost:8080/auth/login", {
+ 
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(formData),
+			});
+	
+			console.log("Response status:", res.status);
+			const data = await res.json();
+	
+			if (res.ok) {
+				console.log("Login successful!", data);
+				window.location.href = "/home"; 
+			} else {
+				alert(data.message || "Invalid username or password");
+			}
+		} catch (error) {
+			console.error("Login error:", error);
+			alert("Something went wrong! Check console for details.");
+		}
 	};
+	
+	
 
 	return (
 		<div className="min-h-screen bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8">
